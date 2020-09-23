@@ -24,10 +24,14 @@ public:
   void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill) override;
   void releaseResources() override;
 
+  //==============================================================================
+  void setLevel(double newLevel) { level = newLevel; }
+
 private:
   //==============================================================================
   // Your private member variables go here...
   juce::Random random;
+  double level = 1.0f;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NoiseGenerator)
 };

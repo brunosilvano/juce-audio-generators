@@ -6,6 +6,7 @@
   ==============================================================================
 */
 
+#include <iostream>
 #include <memory>
 
 #include <JuceHeader.h>
@@ -29,7 +30,11 @@ int main (int argc, char* argv[])
   deviceManager.addAudioCallback(player.get());
 
   // Runs indefinitely
-  while(1){}
+  double level;
+  while(1){
+    std::cin >> level;
+    source->setLevel(level);
+  }
 
   return 0;
 }
