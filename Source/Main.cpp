@@ -11,6 +11,7 @@
 
 #include <JuceHeader.h>
 #include "NoiseGenerator.h"
+#include "SineGenerator.h"
 
 //==============================================================================
 int main (int argc, char* argv[])
@@ -20,7 +21,7 @@ int main (int argc, char* argv[])
   deviceManager.initialiseWithDefaultDevices(0, 2);
 
   // Create a noise generator source
-  auto source = std::make_unique<NoiseGenerator>();
+  auto source = std::make_unique<SineGenerator>();
 
   // Create a player to stream audio from source
   auto player = std::make_unique<juce::AudioSourcePlayer>();
@@ -31,9 +32,11 @@ int main (int argc, char* argv[])
 
   // Runs indefinitely
   double level;
+  double frequency;
   while(1){
-    std::cin >> level;
+    std::cin >> level >> frequency;
     source->setLevel(level);
+    source->setFrequency(frequency);
   }
 
   return 0;

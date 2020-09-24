@@ -5,6 +5,9 @@
               jucerFormatVersion="1">
   <MAINGROUP id="xRoMWS" name="ConsoleAudioTest">
     <GROUP id="{C9214960-E93E-3D53-C275-2E3B1A129696}" name="Source">
+      <FILE id="BOxLF7" name="SineGenerator.cpp" compile="1" resource="0"
+            file="Source/SineGenerator.cpp"/>
+      <FILE id="FNx5Ez" name="SineGenerator.h" compile="0" resource="0" file="Source/SineGenerator.h"/>
       <FILE id="YxaGut" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="rosSr1" name="NoiseGenerator.cpp" compile="1" resource="0"
             file="Source/NoiseGenerator.cpp"/>
