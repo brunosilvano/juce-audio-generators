@@ -25,7 +25,7 @@ public:
   void releaseResources() override;
 
   //==============================================================================
-  void setFrequency(double newFrequency) { currentFrequency = newFrequency; updateAngleDelta(); }
+  void setFrequency(double newFrequency) { targetFrequency = newFrequency; }
   void setLevel(double newLevel) { level = newLevel; }
   void updateAngleDelta();
 
@@ -35,6 +35,7 @@ private:
   double level = 1.0f;
 
   double currentFrequency = 0.0f;
+  double targetFrequency = 0.0f;
   double currentSampleRate = 0.0f;
   double currentAngle = 0.0f;
   double angleDelta = 0.0f;

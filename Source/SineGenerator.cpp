@@ -31,12 +31,35 @@ void SineGenerator::getNextAudioBlock(const juce::AudioSourceChannelInfo &buffer
   auto* leftBuffer  = bufferToFill.buffer->getWritePointer(0, bufferToFill.startSample);
   auto* rightBuffer = bufferToFill.buffer->getWritePointer(1, bufferToFill.startSample);
 
-  for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+  auto localTargetFrequency = targetFrequency;
+
+  if (localTargetFrequency != currentFrequency)
   {
-    auto currentSample = (float) std::sin(currentAngle);
-    currentAngle += angleDelta;
-    leftBuffer[sample] = currentSample * level;
-    rightBuffer[sample] = currentSample * level;
+    auto frequencyIncrement = (localTargetFrequency - currentFrequency) / bufferToFill.numSamples;
+
+    for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+    {
+      auto currentSample = (float) std::sin(currentAngle);
+
+      currentFrequency += frequencyIncrement;
+      updateAngleDelta();
+
+      currentAngle += angleDelta;
+      leftBuffer[sample] = currentSample * level;
+      rightBuffer[sample] = currentSample * level;
+    }
+
+    currentFrequency = localTargetFrequency;
+  }
+  else
+  {
+    for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
+    {
+      auto currentSample = (float) std::sin(currentAngle);
+      currentAngle += angleDelta;
+      leftBuffer[sample] = currentSample * level;
+      rightBuffer[sample] = currentSample * level;
+    }
   }
 }
 
